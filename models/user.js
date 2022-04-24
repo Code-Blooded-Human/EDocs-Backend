@@ -5,7 +5,7 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   docPasswords: String,
-  recentlyVisistedDocs: Array,
+  recentlyVisitedDocs: { type: Array, default: [] },
 });
 
 export const User = mongoose.model("User", UserSchema);
