@@ -12,7 +12,8 @@ userRouter.get('/getPasswords', async (req, res, next) => {
 });
 
 userRouter.post('/updatePasswords', async (req, res, next) => {
-    User.findByIdAndUpdate(req.user.id,{$set:{docPasswords:req.body.passwords}} );
+    let x = await User.updateOne({_id:req.user.id},{$set:{docPasswords:req.body.passwords}} );
+    console.log(x);
     console.log({updatePasswords:req.body.passwords });
         res.send({});
 });

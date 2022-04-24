@@ -28,7 +28,7 @@ export async function  getDocumentWithID(req,res, next){
     }
 }
 export async function getDocument(req,res,next){
-   
+        
         let label = req.body.label;
         console.log({label});
         const doc = await Document.findOne({name:req.body.name}).populate('owner');
@@ -36,7 +36,8 @@ export async function getDocument(req,res,next){
             throw 'Document not found';
         }
         if(doc.content.length == 0){
-            throw 'Empty document';
+            res.send({status:"SUCCESS", content:[], owner:doc.owner});
+            return;  
         }
         let index = doc.content.length-1
         if(label){
