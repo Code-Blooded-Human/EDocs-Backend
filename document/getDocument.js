@@ -14,7 +14,19 @@ export async function  getAllDocuments(req,res, next){
         next(e);
     }
 }
-
+export async function  getDocumentWithID(req,res, next){
+    try{
+        console.log(req.user.id);
+        const docs = await Document.find({owner:req.user.id, name:req.params.name});
+        if(!docs){
+            throw 'Document not found';
+        }
+        res.send({status:"SUCCESS", doc:docs[0]});
+    }catch(e){
+        console.log(e);
+        next(e);
+    }
+}
 export async function getDocument(req,res,next){
    
         let label = req.body.label;

@@ -2,6 +2,7 @@ import {Router} from 'express'
 import { verifyJWTToken } from '../middlewares/verifyJWTToken.js';
 import { authRouter } from './auth.route.js';
 import { documentRouter } from './document.route.js';
+import { userRouter } from './user.route.js';
 
 export const router = Router();
 
@@ -10,4 +11,4 @@ router.get('/', async (req, res, next) => {
 });
 router.use('/auth', authRouter);
 router.use('/document', verifyJWTToken ,documentRouter);
-
+router.use('/user', verifyJWTToken, userRouter );
