@@ -10,7 +10,8 @@ export async function loginController(req, res, next){
         res.send({status:"SUCCESS", token});
     }catch(err){
         console.log(err);
-        next(err);
+        res.send({status:"FAILURE", msg: err})
+        // next(err);
     }
 }
 

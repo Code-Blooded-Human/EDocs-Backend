@@ -12,7 +12,6 @@ export async function login(email,password){
 
     if(user.password != password){
         throw "Invalid password";
-        
     }
 
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -21,8 +20,6 @@ export async function login(email,password){
         id:user._id,
         name:user.name
     }
-  
     const token = jwt.sign(data, jwtSecretKey);
-  
     return token;
 }
