@@ -44,7 +44,15 @@ export async function getDocument(req, res, next) {
     throw "Document not found";
   }
   if (doc.content.length == 0) {
-    throw "Empty document";
+    
+  res.send({
+    status: "SUCCESS",
+    content: '',
+    owner: doc.owner,
+    history: doc.content,
+  });
+
+  return;
   }
   let index = doc.content.length - 1;
   if (label) {
